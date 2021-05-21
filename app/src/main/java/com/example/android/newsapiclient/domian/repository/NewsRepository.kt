@@ -7,14 +7,14 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
 
-    suspend fun  getNewsHeadlines(): Resource<APIResponse>
+    suspend fun getNewsHeadlines(country: String, page: Int): Resource<APIResponse>
 
     suspend fun getSearchedNews(searchQuery: String): Resource<APIResponse>
 
-    suspend fun  saveNews(article: Article)
+    suspend fun saveNews(article: Article)
 
-    suspend fun  deleteNews(article: Article)
+    suspend fun deleteNews(article: Article)
 
     //We could have used List<Article> only  but we want to get real time updates from the database
-     fun getSavedNews(): Flow<List<Article>>
+    fun getSavedNews(): Flow<List<Article>>
 }

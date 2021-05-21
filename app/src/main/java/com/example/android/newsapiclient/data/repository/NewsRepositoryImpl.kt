@@ -8,14 +8,14 @@ import com.example.android.newsapiclient.domian.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
-class NewsRepositoryImpl(private val newsRemoteDataSource: NewsRemoteDataSource): NewsRepository {
+class NewsRepositoryImpl(private val newsRemoteDataSource: NewsRemoteDataSource) : NewsRepository {
 
-    override suspend fun getNewsHeadlines(): Resource<APIResponse> {
-        TODO("Not yet implemented")
+    override suspend fun getNewsHeadlines(country: String, page: Int): Resource<APIResponse> {
+        return responseToResource(newsRemoteDataSource.getTopHeadlines(country, page))
     }
 
-    private fun responseToResource(response: Response<APIResponse>): Resource<APIResponse>{
-        if (response.isSuccessful){
+    private fun responseToResource(response: Response<APIResponse>): Resource<APIResponse> {
+        if (response.isSuccessful) {
             response.body()?.let { result ->
                 return Resource.Success(result)
             }
