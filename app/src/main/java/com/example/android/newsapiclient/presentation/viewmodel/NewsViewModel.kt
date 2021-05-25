@@ -20,9 +20,9 @@ class NewsViewModel(
    private val getNewsHeadlineUseCase: GetNewsHeadlineUseCase
 ) : AndroidViewModel(app){
 
-    private val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
+     val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
-    fun getHeadLines(country: String, page: Int) = viewModelScope.launch (Dispatchers.IO){
+    fun getNewsHeadLines(country: String, page: Int) = viewModelScope.launch (Dispatchers.IO){
         newsHeadLines.postValue(Resource.Loading())
         try {
             if(isNetworkAvailable(app)){
@@ -36,8 +36,6 @@ class NewsViewModel(
             newsHeadLines.postValue(Resource.Error(e.message.toString()))
     }
     }
-
-
 
     private fun isNetworkAvailable(context: Context?):Boolean{
         if (context == null) return false
