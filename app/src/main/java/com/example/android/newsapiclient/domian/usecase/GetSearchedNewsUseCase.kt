@@ -7,8 +7,8 @@ import com.example.android.newsapiclient.domian.repository.NewsRepository
 
 class GetSearchedNewsUseCase (private  val newsRepository: NewsRepository) {
 
-    suspend fun execute(search: String): Resource<APIResponse> {
-        return newsRepository.getSearchedNews(search)
+    suspend fun execute(country:String,searchQuery:String,page:Int): Resource<APIResponse>{
+        return newsRepository.getSearchedNews(country,searchQuery,page)
     }
 }
 
