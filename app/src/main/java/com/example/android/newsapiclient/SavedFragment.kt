@@ -37,7 +37,7 @@ class SavedFragment : Fragment() {
                 putSerializable("selected_article",it)
             }
             findNavController().navigate(
-                R.id.action_newsFragment_to_infoFragment,
+                R.id.action_savedFragment_to_infoFragment,
                 bundle
             )
         }
